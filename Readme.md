@@ -1,4 +1,4 @@
-# go-proxydisabler
+# go-httpserver
 
 簡易的にhttpサーバーを建てるためのバイナリ
 
