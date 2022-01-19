@@ -12,7 +12,7 @@ var (
 )
 
 func main() {
-	flag.StringVar(&localHost, "p", "0.0.0.0:8080", "Proxy:port")
+	flag.StringVar(&localHost, "p", "0.0.0.0:8080", "Address:Port")
 	flag.StringVar(&localDir, "d", ".", "/path/to/dir")
 	flag.Parse()
 
