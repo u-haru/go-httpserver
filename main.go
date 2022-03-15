@@ -17,7 +17,11 @@ func main() {
 	flag.Parse()
 
 	log.Println("Start serving on", localHost)
-	http.Handle("/", http.FileServer(http.Dir(localDir)))
+	handler := http.FileServer(http.Dir(localDir))
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Cache-Control", "no-store") //last-modified等で確認取れない限り再取得
+		handler.ServeHTTP(w, r)
+	})
 	if err := http.ListenAndServe(localHost, nil); err != nil {
 		log.Fatal("ListenAndServe failed.", err)
 	}
